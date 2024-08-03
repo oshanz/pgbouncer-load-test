@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    shm_size: 128mb
+
+  pgbouncer:
+    image: bitnami/pgbouncer:1.23.1
+    restart: always
+    depends_on:
+      - db
+
+  k6:
+    image: grafana/k6:0.52.0
+    
