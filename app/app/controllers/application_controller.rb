@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def io_intensive
-    slow_query
+    slow_query(10)
     render plain: 'IO Intensive'
   end
 

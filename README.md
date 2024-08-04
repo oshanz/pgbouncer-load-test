@@ -5,11 +5,15 @@
 - io bound localhost:8080/cpu_intensive
 - cpu bound localhost:8080/io_intensive
 
-| unicorn workers | rails db pool | db connections | with pgbouncer pool size | transaction mode
-| --- | --- | --- | --- | --- |
-| 4 | 5 | 4*5 | 2 | session |
-| 4 | 5 | 4*5 | 10 | session |
-| 4 | 5 | 4*5 | 20 | session |
+
+100 vus, 10s
+
+| unicorn workers | rails db pool | db connections | with pgbouncer pool size | transaction mode | throughput | 95th percentile |  
+| --- | --- | --- | --- | --- | --- | --- |
+| 4 | 5 | 4*5 | 2 | session | 6 | 30798.33 |
+| 4 | 5 | 4*5 | 10 | session | 13 | 30823.54 |
+| 4 | 5 | 4*5 | 30 | session | 10 | 30464.09 |
+| 4 | 1 | 4*1 | 30 | session | 12 | 30221.89 |
 
 
 
@@ -36,3 +40,18 @@ k6 run script.js
 https://github.com/rails/rails/issues/38560
 
 `export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES`
+
+
+### Notes
+ - select count(*) from pg_stat_activity where pid <> pg_backend_pid() and usename = current_user;
+
+ SELECT
+  pid,
+  user,
+  pg_stat_activity.query_start,
+  now() - pg_stat_activity.query_start AS query_time,
+  query,
+  state,
+  wait_event_type,
+  wait_event
+FROM pg_stat_activity
