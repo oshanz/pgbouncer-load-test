@@ -22,6 +22,13 @@ bundle install
 bundle exec unicorn -c config/unicorn.conf.rb
 ```
 
+### run k6
+```bash
+brew install k6
+k6 run script.js
+# docker-compose run k6 run /app/script.js
+```
+
 
 ### Known issues
 
