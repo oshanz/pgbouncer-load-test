@@ -9,8 +9,17 @@ class ApplicationController < ActionController::Base
   end
 
   def io_intensive
-    slow_query(10)
+    if ActiveRecord::Base.connection_pool.stat[:connections] > 0
+      puts "ActiveRecord::Base.connection_pool.stat[:connections]: #{ActiveRecord::Base.connection_pool.stat[:connections]}"
+    end
+    slow_query(1)
+
     render plain: 'IO Intensive'
+  end
+
+  def db_stats
+    stats = ActiveRecord::Base.connection_pool.stat
+    render json: stats
   end
 
   private

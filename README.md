@@ -12,7 +12,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 4 | 5 | 4*5 | 2 | session | 6 | 30798.33 |
 | 4 | 5 | 4*5 | 10 | session | 13 | 30823.54 |
-| 4 | 5 | 4*5 | 30 | session | 10 | 30464.09 |
+| 4 | 5 | 4*5 | 30 | session | 12 | 30832.44 |
 | 4 | 1 | 4*1 | 30 | session | 12 | 30221.89 |
 
 
@@ -55,3 +55,6 @@ https://github.com/rails/rails/issues/38560
   wait_event_type,
   wait_event
 FROM pg_stat_activity
+
+- psql -U postgres -h localhost -p 6432 pgbouncer
+show pools;

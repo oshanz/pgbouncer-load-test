@@ -12,7 +12,7 @@ default: &default
   host: localhost
   port: 6432
   adapter: postgresql
-  idle_timeout: 5
+  idle_timeout: 50000
 
 development:
   <<: *default

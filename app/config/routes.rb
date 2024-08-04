@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   root 'application#index'
   get 'cpu_intensive' => 'application#cpu_intensive'
   get 'io_intensive' => 'application#io_intensive'
+  get 'db_stats' => 'application#db_stats'
 end
