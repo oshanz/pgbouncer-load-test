@@ -43,6 +43,11 @@ https://github.com/rails/rails/issues/38560
 
 
 ### Notes
+
+-  https://eoinkelly.info/2023/01/06/rails-and-pgbouncer-notes#rails-and-pgbouncer
+- https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing
+
+
  - select count(*) from pg_stat_activity where pid <> pg_backend_pid() and usename = current_user;
 
  SELECT
